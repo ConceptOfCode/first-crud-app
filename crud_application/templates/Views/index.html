@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'lib/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/indexStyle.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container">
+            <div id="contInfo" class="container row" dir="rtl">
+                <div class="alert alert-primary">
+                    <h4>سیستم پویا لیست موجودیت های اداره</h4>
+                </div>
+                <label for="">تعیین لیست : </label>
+                <div id="selection" class="col-md-4 col-xs-4 col-lg-4">
+                    <select class="form-control" id="specifyData">
+                        <option value="temp">test</option>
+                    </select>
+                </div>
+            </div>
+            <table dir="rtl" id="allList" class="table table-bordered">
+                <thead class="thead-dark">
+                    <th>نام رستوران</th>
+                    <th>تعداد ستاره</th>
+                    <th>آدرس کامل</th>
+                    <th>نام مدیریت</th>
+                    <th>عملیات</th>
+                </thead>
+
+                <tbody>
+                    {% for item in data %}
+
+                    <tr>
+                        <td>{{item.resturantId.resturantName}}</td>
+                        <td>{{item.resturantId.startCount}}</td>
+                        <td>{{item.fullAddress}}</td>
+                        <td>{{item.resturantId.managerFullName}}</td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'doDelete' id=item.id %}">حذف</a>   <a class="btn btn-sm btn-warning" href="{% url 'updateInformations' id=item.id %}">ویرایش</a></td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <section id="btns" class="container row" dir="rtl">
+        <a href="{% url 'addPage' %}" class="btn btn-success">اضافه کردن رستوران</a>
+        <a href="{% url 'renderAddBranches' %}" class="btn btn-success">اضافه کردن شعبه</a>
+        <a href="" class="btn btn-danger">انصراف</a>
+    </section>
+
+</body>
+
+</html>

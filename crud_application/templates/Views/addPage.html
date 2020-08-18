@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'lib/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/indexStyle.css' %}">
+</head>
+
+<body dir="rtl">
+    <div class="alert alert-primary text-center">
+        <h4>سیستم پویا لیست موجودیت های اداره</h4>
+    </div>
+
+    <div class="container">
+        <div class="container">
+            <form method="POST" action="{% url 'addPagePost' %}">
+                {% csrf_token %}
+                <div class="container">
+                    <input name="resturantName" type="text" class="form-control" placeholder="نام رستوران">
+                    <input name="starCount" type="text" class="form-control margin-top-20px"
+                        placeholder="تعداد ستاره ها">
+                    <input name="managerFullName" type="text" class="form-control margin-top-20px"
+                        placeholder="نام مدیریت">
+{#                    <input name="streetName" type="text" class="form-control margin-top-20px" placeholder="نام خیابان">#}
+{#                    <input name="cityName" type="text" class="form-control margin-top-20px" placeholder="نام شهر">#}
+{#                    <input name="countryName" type="text" class="form-control margin-top-20px" placeholder="نام کشور">#}
+{#                    <input name="fullAddress" type="text" class="form-control margin-top-20px" placeholder="آدرس کامل">#}
+                </div>
+                <section class="text-center margin-top-20px">
+                    <button class="btn btn-success">ثبت</button>
+                    <a href="{% url 'indexPage' %}" class="btn btn-danger">انصراف</a>
+                </section>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

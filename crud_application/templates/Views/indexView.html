@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!--===============================================================================================-->
+</head>
+<body>
+<button id="getRes" class="btn btn-primary">ClickToGetResponse</button>
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <section class="limiter" dir="rtl">
+                <a href="{% url 'index' %}" class="btn btn-success">اضافه کردن کارخانه</a>
+                <a href="{% url 'equAdd' %}" class="btn btn-success">اضافه کردن قطعه</a>
+                <a class="btn btn-danger">انصراف</a>
+            </section>
+            <div class="table">
+
+                <div class="row header">
+                    <div class="cell">
+                        عملیات
+                    </div>
+                    <div class="cell">
+                        نام قطعه
+                    </div>
+                    <div class="cell">
+                        شماره سریال قطعه
+                    </div>
+                    <div class="cell">
+                        وضعیت قطعه
+                    </div>
+                    <div class="cell">
+                        نام کارخانه
+                    </div>
+                </div>
+
+                {% for item in data %}
+
+                    <div class="row">
+                        <div class="cell" data-title="Job Title">
+                            <a class="btn btn-warning btn-sm" href="{% url 'update' equID=item.id %}">ویرایش</a> <a
+                                class="btn btn-sm btn-danger" href="{% url 'delete' equID=item.id %}">حذف</a>
+                        </div>
+
+                        <div class="cell" data-title="Full Name">
+                            {{ item.equipName }}
+                        </div>
+                        <div class="cell" data-title="Age">
+                            {{ item.equipNo }}
+                        </div>
+                        <div class="cell" data-title="Job Title">
+                            {{ item.equipStatus }}
+                        </div>
+                        <div class="cell" data-title="Location">
+                            {% if item.Factory == None %}
+                                بدون مقدار
+                            {% else %}
+                                {{ item.Factory.factoryName }}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/Scripts.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

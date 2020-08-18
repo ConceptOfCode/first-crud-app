@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'lib/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/indexStyle.css' %}">
+</head>
+<body>
+<div class="alert alert-primary text-center">
+    <h4>سیستم پویا لیست موجودیت های اداره</h4>
+</div>
+
+<div dir="rtl" class="container">
+    <div class="container">
+        <form method="POST" action="{% url 'doUpdate' %}">
+            {% csrf_token %}
+            <div class="container">
+                <input type="text" name="restId" value="{{ data.resturantId.id }}" hidden>
+                <input name="resturantName" type="text" value="{{ data.resturantId.resturantName }}"
+                       class="form-control margin-top-20px" placeholder="نام رستوران">
+                <input name="starCount" value="{{ data.resturantId.startCount }}" type="text"
+                       class="form-control margin-top-20px"
+                       placeholder="تعداد ستاره ها">
+                <input name="managerFullName" value="{{ data.resturantId.managerFullName }}" type="text"
+                       class="form-control margin-top-20px"
+                       placeholder="نام مدیریت">
+
+
+                <input name="branchId" type="text" value="{{ data.id }}" hidden>
+                <input name="streetName" value="{{ data.streetName }}" type="text" class="form-control margin-top-20px"
+                       placeholder="نام خیابان">
+                <input name="cityName" value="{{ data.cityName }}" type="text" class="form-control margin-top-20px"
+                       placeholder="نام شهر">
+                <input name="countryName" value="{{ data.countryName }}" type="text"
+                       class="form-control margin-top-20px" placeholder="نام کشور">
+                <input name="fullAddress" value="{{ data.fullAddress }}" type="text"
+                       class="form-control margin-top-20px" placeholder="آدرس کامل">
+
+                <select name="" id="changeBranches" class="form-control margin-top-20px">
+
+                    {% for item in branchList %}
+
+                        <option value="{{ item.id }}">{{ item.fullAddress }}</option>
+
+                    {% endfor %}
+
+
+                </select>
+            </div>
+            <section class="text-center margin-top-20px">
+                <button class="btn btn-success">ثبت</button>
+                <a href="{% url 'indexPage' %}" class="btn btn-danger">انصراف</a>
+            </section>
+        </form>
+    </div>
+</div>
+</body>
+</html>
